@@ -11,14 +11,14 @@
 
 export const PROFILE = {
   // --- DATOS PERSONALES ---
-  name: "Lic. Ana García",
+  name: "Lic. Noelia Rocio Valdevenitez",
   title: "Psicóloga Clínica",
   license: "M.N. 45678", // Matrícula
   shortDescription: "Psicología Clínica y Psicoanálisis.",
   
   // --- CONTACTO ---
-  email: "contacto@anagarcia.com.ar",
-  location: "Buenos Aires, Argentina",
+  email: "lic.valdevenitez@gmail.com",
+  location: "Flores (CABA), Buenos Aires, Argentina",
 
   // --- FORMACIÓN ACADÉMICA ---
   university: {
