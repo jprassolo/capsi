@@ -33,9 +33,11 @@ export const sendMessageToGemini = async (history: {role: string, text: string}[
   try {
     let apiKey: string | undefined;
     
-    // Robustly attempt to get the API key
+    // Robustly attempt to get the API key, checking if process exists first to avoid ReferenceError in browsers
     try {
-      apiKey = process.env.API_KEY;
+      if (typeof process !== 'undefined' && process.env) {
+        apiKey = process.env.API_KEY;
+      }
     } catch (e) {
       console.warn("Accessing process.env failed");
     }

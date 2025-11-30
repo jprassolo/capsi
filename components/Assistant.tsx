@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -6,11 +7,12 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChatMessage } from '../types';
 import { sendMessageToGemini } from '../services/geminiService';
+import { PROFILE } from '../config';
 
 const Assistant: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<ChatMessage[]>([
-    { role: 'model', text: 'Hola. Soy el asistente virtual de la Lic. Ana García. Estoy aquí para responder tus dudas sobre los tratamientos, modalidades o turnos. ¿En qué puedo ayudarte hoy?', timestamp: Date.now() }
+    { role: 'model', text: `Hola. Soy el asistente virtual de ${PROFILE.name}. Estoy aquí para responder tus dudas sobre los tratamientos, modalidades o turnos. ¿En qué puedo ayudarte hoy?`, timestamp: Date.now() }
   ]);
   const [inputValue, setInputValue] = useState('');
   const [isThinking, setIsThinking] = useState(false);
