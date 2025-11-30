@@ -6,6 +6,7 @@
 
 import React from 'react';
 import { JournalArticle } from '../types';
+import { PROFILE } from '../config';
 
 interface JournalDetailProps {
   article: JournalArticle;
@@ -49,7 +50,7 @@ const JournalDetail: React.FC<JournalDetailProps> = ({ article, onBack }) => {
              </div>
              
              <div className="mt-16 pt-12 border-t border-[#D6D1C7] flex justify-center">
-                 <span className="text-2xl font-serif italic text-[#2C2A26]">Lic. Ana García</span>
+                 <span className="text-2xl font-serif italic text-[#2C2A26]">{PROFILE.name}</span>
              </div>
           </div>
        </div>
