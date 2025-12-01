@@ -9,9 +9,6 @@ import React from 'react';
 import { PROFILE } from '../config';
 
 const About: React.FC = () => {
-  // Helper to split text into lines if <br/> is needed, though simple string is safer for now.
-  // We will assume the text in config is plain text, or we render it directly.
-  
   return (
     <section id="about" className="bg-[#EBE7DE]">
       
@@ -24,17 +21,16 @@ const About: React.FC = () => {
         </div>
         <div className="md:w-2/3 max-w-2xl">
           <p className="text-lg md:text-xl text-[#44403C] font-light leading-relaxed mb-8">
-            Soy <strong>{PROFILE.university.degree} por la {PROFILE.university.name}</strong>, con una profunda vocación por la clínica psicoanalítica. {PROFILE.about.intro}
+            Soy <strong>{PROFILE.university.degree}</strong> egresada de la <strong>{PROFILE.university.name}</strong>. {PROFILE.about.intro}
           </p>
           <p className="text-lg md:text-xl text-[#44403C] font-light leading-relaxed mb-8">
-            Mi formación continua incluye un <strong>{PROFILE.postgraduate.title} en el {PROFILE.postgraduate.institution}</strong>. Además, soy <strong>{PROFILE.mindfulness.title} ({PROFILE.mindfulness.institution})</strong>, integrando herramientas de regulación emocional cuando el paciente lo requiere.
+            Mi formación se especializa en la clínica de adultos a través del <strong>{PROFILE.postgraduate.title} ({PROFILE.postgraduate.institution})</strong> y se actualiza constantemente, destacando mi <strong>Diplomatura Universitaria en Familia y Pareja (AASM)</strong>. Integro además herramientas de <strong>Mindfulness</strong> para el abordaje del estrés y la regulación emocional.
           </p>
           <div className="mt-12 p-8 bg-[#F5F2EB] border border-[#D6D1C7]">
-            <h4 className="font-serif text-xl mb-4 text-[#2C2A26]">Credenciales</h4>
+            <h4 className="font-serif text-xl mb-4 text-[#2C2A26]">Formación y Credenciales</h4>
             <ul className="space-y-2 text-[#5D5A53] font-light text-sm">
-                <li>• {PROFILE.university.degree} - {PROFILE.license}</li>
+                <li>• {PROFILE.university.degree} (UBA)</li>
                 <li>• {PROFILE.postgraduate.title}</li>
-                <li>• {PROFILE.mindfulness.title}</li>
                 {PROFILE.courses.map((course, index) => (
                     <li key={index}>• {course}</li>
                 ))}
@@ -47,7 +43,7 @@ const About: React.FC = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[80vh]">
         <div className="order-2 lg:order-1 relative h-[500px] lg:h-auto overflow-hidden group">
            <img 
-             src="https://images.unsplash.com/photo-1544716278-e5131b47c013?auto=format&fit=crop&q=80&w=1200" 
+             src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=1200" 
              alt="Libros y estudio" 
              className="absolute inset-0 w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-105 grayscale-[0.3]"
            />

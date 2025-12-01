@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -14,7 +15,6 @@ interface ProductDetailProps {
 }
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, onAddToCart }) => {
-  // Sizes removed as not relevant for therapy
   
   return (
     <div className="pt-24 min-h-screen bg-[#F5F2EB] animate-fade-in-up">
@@ -48,7 +48,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, onAddToC
           <div className="flex flex-col justify-center max-w-xl">
              <span className="text-sm font-medium text-[#A8A29E] uppercase tracking-widest mb-2">{product.category}</span>
              <h1 className="text-4xl md:text-5xl font-serif text-[#2C2A26] mb-4">{product.name}</h1>
-             <span className="text-2xl font-light text-[#2C2A26] mb-8">${product.price} <span className="text-sm text-[#A8A29E]">/ sesión</span></span>
+             <span className="text-2xl font-light text-[#2C2A26] mb-8">
+                {product.price > 0 ? `$${product.price}` : 'Honorarios a convenir'}
+                {product.price > 0 && <span className="text-sm text-[#A8A29E]"> / sesión</span>}
+             </span>
              
              <p className="text-[#5D5A53] leading-relaxed font-light text-lg mb-8 border-b border-[#D6D1C7] pb-8">
                {product.longDescription || product.description}

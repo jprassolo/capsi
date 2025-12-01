@@ -89,7 +89,9 @@ const Checkout: React.FC<CheckoutProps> = ({ items, onBack }) => {
                        <h3 className="font-serif text-[#2C2A26] text-base">{item.name}</h3>
                        <p className="text-xs text-[#A8A29E]">{item.category}</p>
                     </div>
-                    <span className="text-sm text-[#5D5A53]">${item.price}</span>
+                    <span className="text-sm text-[#5D5A53]">
+                        {item.price > 0 ? `$${item.price}` : 'A coordinar'}
+                    </span>
                  </div>
                ))}
             </div>
@@ -109,7 +111,7 @@ const Checkout: React.FC<CheckoutProps> = ({ items, onBack }) => {
                    <span className="font-serif text-2xl text-[#2C2A26]">${total}</span>
                  </div>
                </div>
-               <p className="text-xs text-[#A8A29E] mt-4">Los honorarios pueden estar sujetos a reintegro por obra social según corresponda.</p>
+               <p className="text-xs text-[#A8A29E] mt-4">Los honorarios pueden estar sujetos a reintegro por obra social según corresponda. Servicios sin precio fijo se acuerdan en la entrevista.</p>
             </div>
           </div>
         </div>

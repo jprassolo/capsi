@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -12,7 +13,7 @@ export interface Product {
   description: string;
   longDescription?: string;
   price: number;
-  category: 'Adultos' | 'Parejas' | 'Adolescentes' | 'Online' | 'Talleres';
+  category: 'Entrevista' | 'Adultos' | 'Parejas' | 'Talleres';
   imageUrl: string;
   gallery?: string[];
   features: string[];

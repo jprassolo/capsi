@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -66,7 +67,9 @@ const CartDrawer: React.FC<CartDrawerProps> = ({ isOpen, onClose, items, onRemov
                   <div>
                     <div className="flex justify-between items-start">
                         <h3 className="font-serif text-[#2C2A26] text-sm">{item.name}</h3>
-                        <span className="text-sm font-light text-[#2C2A26]">${item.price}</span>
+                        <span className="text-sm font-light text-[#2C2A26]">
+                            {item.price > 0 ? `$${item.price}` : 'A coordinar'}
+                        </span>
                     </div>
                     <p className="text-xs text-[#A8A29E] uppercase tracking-widest mt-1">{item.category}</p>
                   </div>

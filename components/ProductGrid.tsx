@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -10,7 +11,7 @@ import { Product } from '../types';
 import ProductCard from './ProductCard';
 
 // Updated categories for psychology services
-const categories = ['Todos', 'Adultos', 'Parejas', 'Adolescentes', 'Online', 'Talleres'];
+const categories = ['Todos', 'Entrevista', 'Adultos', 'Parejas', 'Talleres'];
 
 interface ProductGridProps {
   onProductClick: (product: Product) => void;

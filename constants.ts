@@ -10,6 +10,21 @@ import { PROFILE } from './config';
 
 export const PRODUCTS: Product[] = [
   {
+    id: 's0',
+    name: 'Entrevista Inicial',
+    tagline: 'Primer paso hacia el cambio.',
+    description: 'Espacio de evaluación diagnóstica y coordinación del tratamiento. Fundamental para iniciar cualquier proceso.',
+    longDescription: 'La entrevista inicial es el primer encuentro donde evaluamos el motivo de consulta, la modalidad de trabajo más adecuada y establecemos el encuadre terapéutico. Es el momento para despejar dudas y conocer al profesional.',
+    price: PROFILE.prices.initialInterview,
+    category: 'Entrevista',
+    imageUrl: 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&q=80&w=1000',
+    gallery: [
+      'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1606166187734-a433e10e5979?auto=format&fit=crop&q=80&w=1000'
+    ],
+    features: ['Evaluación diagnóstica', 'Definición de objetivos', '45-50 minutos']
+  },
+  {
     id: 's1',
     name: 'Terapia Individual (Adultos)',
     tagline: 'Espacio de escucha analítica.',
@@ -17,13 +32,14 @@ export const PRODUCTS: Product[] = [
     longDescription: 'Un espacio seguro y confidencial diseñado para explorar el inconsciente, comprender patrones de conducta repetitivos y aliviar el malestar psíquico. Trabajamos sobre la ansiedad, la angustia y los desafíos de la vida cotidiana, permitiendo que surja la propia palabra del sujeto.',
     price: PROFILE.prices.individual,
     category: 'Adultos',
-    // Nueva imagen: Persona mirando al horizonte/paisaje, postura pensativa
-    imageUrl: 'https://images.unsplash.com/photo-1499209974431-2761e201783d?auto=format&fit=crop&q=80&w=1000',
+    // Nueva imagen: Espacio de terapia cálido (Sillones, luz natural) - Más estable que retratos
+    imageUrl: 'https://images.unsplash.com/photo-1666362755385-1856fca1a330?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&q=80&w=1000',
     gallery: [
-      'https://images.unsplash.com/photo-1499209974431-2761e201783d?auto=format&fit=crop&q=80&w=1000',
-      'https://images.unsplash.com/photo-1475483768296-6163e08872a1?auto=format&fit=crop&q=80&w=1000'
+      'https://images.unsplash.com/photo-1666362755385-1856fca1a330?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1560963689-02e820147bc3?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?auto=format&fit=crop&q=80&w=1000'
     ],
-    features: ['Presencial o Virtual', 'Frecuencia Semanal', '50 minutos']
+    features: ['Presencial', 'Frecuencia Semanal', '50 minutos']
   },
   {
     id: 's2',
@@ -33,7 +49,6 @@ export const PRODUCTS: Product[] = [
     longDescription: 'Las sesiones de pareja ofrecen un marco para escuchar lo que no se dice en la convivencia diaria. Trabajamos sobre los malentendidos, las crisis vitales y la posibilidad de construir nuevos acuerdos vinculares, o bien, acompañar procesos de separación saludables.',
     price: PROFILE.prices.couple,
     category: 'Parejas',
-    // Imagen movida desde Terapia Individual (Retrato introspectivo)
     imageUrl: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=1000',
     gallery: [
         'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=1000',
@@ -42,23 +57,8 @@ export const PRODUCTS: Product[] = [
     features: ['Mediación de conflictos', 'Comunicación asertiva', '60 minutos']
   },
   {
-    id: 's3',
-    name: 'Atención a Adolescentes',
-    tagline: 'Acompañamiento en el crecimiento.',
-    description: 'Espacio especializado para transitar los desafíos de la adolescencia, identidad y vínculos.',
-    longDescription: 'La adolescencia es un momento de reestructuración psíquica fundamental. Ofrezco un lugar de escucha para abordar temáticas como el bullying, la identidad, la orientación vocacional y las relaciones con los pares y la familia, respetando la singularidad de cada joven.',
-    price: PROFILE.prices.adolescents,
-    category: 'Adolescentes',
-    imageUrl: 'https://images.unsplash.com/photo-1623582854588-d60de57fa33f?auto=format&fit=crop&q=80&w=1000',
-    gallery: [
-        'https://images.unsplash.com/photo-1623582854588-d60de57fa33f?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1491438590914-bc09fcaaf77a?auto=format&fit=crop&q=80&w=1000'
-    ],
-    features: ['Orientación Vocacional', 'Abordaje de Bullying', 'Privacidad garantizada']
-  },
-  {
     id: 's4',
-    name: 'Mindfulness y Regulación',
+    name: 'Mindfulness y Regulación Emocional',
     tagline: 'Atención plena en el presente.',
     description: 'Sesiones enfocadas en la reducción del estrés y la ansiedad mediante técnicas de conciencia plena.',
     longDescription: `Como ${PROFILE.mindfulness.title} (${PROFILE.mindfulness.institution}), integro estas herramientas en la clínica para ayudar a pacientes con altos niveles de estrés o ansiedad. Aprendemos a habitar el presente sin juzgar, reduciendo la rumiación mental.`,
@@ -69,37 +69,7 @@ export const PRODUCTS: Product[] = [
         'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1000',
         'https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&q=80&w=1000'
     ],
-    features: ['Técnicas de respiración', 'Manejo de ansiedad', 'Presencial u Online']
-  },
-  {
-    id: 's5',
-    name: 'Consultoría en Adicciones',
-    tagline: 'Recuperando el control.',
-    description: 'Abordaje clínico especializado en consumos problemáticos y adicciones comportamentales.',
-    longDescription: 'Un tratamiento orientado a comprender la función del síntoma adictivo en la vida del sujeto. Trabajo interdisciplinario si es necesario, brindando contención y estrategias para la recuperación y la reinserción en un proyecto de vida saludable.',
-    price: PROFILE.prices.addiction,
-    category: 'Adultos',
-    imageUrl: 'https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fit=crop&q=80&w=1000',
-    gallery: [
-        'https://images.unsplash.com/photo-1527137342181-19aab11a8ee8?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1518182170546-0766ce6fec56?auto=format&fit=crop&q=80&w=1000'
-    ],
-    features: ['Especialización clínica', 'Apoyo familiar', 'Confidencialidad']
-  },
-  {
-    id: 's6',
-    name: 'Terapia Online',
-    tagline: 'Sin barreras geográficas.',
-    description: 'La misma profundidad analítica, desde la comodidad y seguridad de tu hogar.',
-    longDescription: 'La modalidad remota permite sostener el tratamiento independientemente de la distancia física. Ideal para expatriados, personas con movilidad reducida o agendas complejas. Se realiza a través de plataformas seguras de videollamada.',
-    price: PROFILE.prices.online,
-    category: 'Online',
-    imageUrl: 'https://images.unsplash.com/photo-1534067783741-512d0deaf5ec?auto=format&fit=crop&q=80&w=1000',
-    gallery: [
-        'https://images.unsplash.com/photo-1534067783741-512d0deaf5ec?auto=format&fit=crop&q=80&w=1000',
-        'https://images.unsplash.com/photo-1616587894289-86480e533129?auto=format&fit=crop&q=80&w=1000'
-    ],
-    features: ['Plataforma Segura', 'Horarios Flexibles', 'Español']
+    features: ['Técnicas de respiración', 'Manejo de ansiedad', 'Presencial']
   }
 ];
 

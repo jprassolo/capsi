@@ -1,3 +1,4 @@
+
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -10,7 +11,7 @@ import { PROFILE } from '../config';
 
 const getSystemInstruction = () => {
   const productContext = PRODUCTS.map(p => 
-    `- ${p.name} ($${p.price}): ${p.description}. Detalles: ${p.features.join(', ')}`
+    `- ${p.name} (${p.price > 0 ? '$' + p.price : 'Consultar Honorarios'}): ${p.description}. Detalles: ${p.features.join(', ')}`
   ).join('\n');
 
   return `Eres el Asistente Virtual de "${PROFILE.name}", ${PROFILE.title}.
@@ -22,6 +23,10 @@ const getSystemInstruction = () => {
   
   Aquí están los servicios actuales y sus precios:
   ${productContext}
+  
+  Importante:
+  1. Solo la "Entrevista Inicial" tiene un costo fijo visible.
+  2. Para el resto de los tratamientos, los honorarios se conversan y acuerdan durante la entrevista inicial o contactando directamente, dependiendo de la frecuencia y modalidad.
   
   Responde preguntas sobre los tipos de terapia, horarios (generalmente de lunes a viernes), y enfoque.
   Si alguien menciona una crisis aguda o emergencia, sugiere contactar a servicios de emergencia locales inmediatamente (ej: 911 o 107 en Argentina), no intentes hacer terapia tú mismo.
