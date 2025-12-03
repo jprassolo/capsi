@@ -5,7 +5,7 @@
 */
 
 
-import React from 'react';
+import React, { useState } from 'react';
 import { Product } from '../types';
 
 interface CheckoutProps {
@@ -16,6 +16,54 @@ interface CheckoutProps {
 const Checkout: React.FC<CheckoutProps> = ({ items, onBack }) => {
   const subtotal = items.reduce((sum, item) => sum + item.price, 0);
   const total = subtotal;
+
+  // --- ESTADO PARA MANEJAR EL FORMULARIO ---
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    timePreference: '',
+    consultationReason: ''
+  });
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  // --- FUNCIÓN PARA ENVIAR EL FORMULARIO ---
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormStatus('submitting');
+
+    // Aquí se envían los datos a Formspree
+    try {
+      const response = await fetch('https://formspree.io/f/mvoedrwb', { // <-- REEMPLAZA ESTO con tu URL de Formspree
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          ...formData,
+          servicios_solicitados: items.map(item => item.name).join(', '),
+          total_estimado: total,
+        })
+      });
+
+      if (response.ok) {
+        setFormStatus('success');
+        setFormData({ name: '', email: '', phone: '', timePreference: '', consultationReason: '' });
+      } else {
+        throw new Error('Network response was not ok.');
+      }
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setFormStatus('error');
+    }
+  };
+
 
   return (
     <div className="min-h-screen pt-24 pb-24 px-6 bg-[#F5F2EB] animate-fade-in-up">
@@ -37,42 +85,51 @@ const Checkout: React.FC<CheckoutProps> = ({ items, onBack }) => {
             <h1 className="text-3xl font-serif text-[#2C2A26] mb-4">Solicitud de Turno</h1>
             <p className="text-sm text-[#5D5A53] mb-12">Complete sus datos para coordinar la agenda. Nos pondremos en contacto a la brevedad.</p>
             
-            <div className="space-y-12">
-              {/* Section 1: Contact */}
-              <div>
-                <h2 className="text-xl font-serif text-[#2C2A26] mb-6">Datos de Contacto</h2>
-                <div className="space-y-4">
-                   <input type="text" placeholder="Nombre completo" className="w-full bg-transparent border-b border-[#D6D1C7] py-3 text-[#2C2A26] placeholder-[#A8A29E] outline-none focus:border-[#2C2A26] transition-colors" />
-                   <input type="email" placeholder="Correo electrónico" className="w-full bg-transparent border-b border-[#D6D1C7] py-3 text-[#2C2A26] placeholder-[#A8A29E] outline-none focus:border-[#2C2A26] transition-colors" />
-                   <input type="tel" placeholder="Teléfono / WhatsApp" className="w-full bg-transparent border-b border-[#D6D1C7] py-3 text-[#2C2A26] placeholder-[#A8A29E] outline-none focus:border-[#2C2A26] transition-colors" />
+            {formStatus === 'success' ? (
+                <div className="bg-[#EBE7DE] p-8 text-center min-h-[400px] flex flex-col justify-center items-center">
+                    <h2 className="text-2xl font-serif text-[#2C2A26] mb-4">¡Gracias por tu mensaje!</h2>
+                    <p className="text-[#5D5A53]">He recibido tu solicitud y me pondré en contacto contigo a la brevedad para coordinar los detalles.</p>
                 </div>
-              </div>
-
-              {/* Section 2: Preferences */}
-              <div>
-                <h2 className="text-xl font-serif text-[#2C2A26] mb-6">Preferencias</h2>
-                <div className="space-y-4">
-                   <div className="grid grid-cols-1 gap-4">
-                      <select className="w-full bg-transparent border-b border-[#D6D1C7] py-3 text-[#2C2A26] outline-none focus:border-[#2C2A26] transition-colors">
-                        <option value="">Preferencia Horaria</option>
-                        <option value="morning">Mañana (9:00 - 12:00)</option>
-                        <option value="afternoon">Tarde (13:00 - 18:00)</option>
-                        <option value="evening">Noche (18:00 - 20:00)</option>
-                      </select>
-                   </div>
-                   <textarea placeholder="Motivo de consulta (breve, opcional)" className="w-full bg-transparent border-b border-[#D6D1C7] py-3 text-[#2C2A26] placeholder-[#A8A29E] outline-none focus:border-[#2C2A26] transition-colors h-24 resize-none"></textarea>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-12">
+                {/* Section 1: Contact */}
+                <div>
+                  <h2 className="text-xl font-serif text-[#2C2A26] mb-6">Datos de Contacto</h2>
+                  <div className="space-y-4">
+                    <input type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder="Nombre completo" required className="w-full bg-transparent border-b border-[#D6D1C7] py-3 text-[#2C2A26] placeholder-[#A8A29E] outline-none focus:border-[#2C2A26] transition-colors" />
+                    <input type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="Correo electrónico" required className="w-full bg-transparent border-b border-[#D6D1C7] py-3 text-[#2C2A26] placeholder-[#A8A29E] outline-none focus:border-[#2C2A26] transition-colors" />
+                    <input type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="Teléfono / WhatsApp" className="w-full bg-transparent border-b border-[#D6D1C7] py-3 text-[#2C2A26] placeholder-[#A8A29E] outline-none focus:border-[#2C2A26] transition-colors" />
+                  </div>
                 </div>
-              </div>
 
-              <div>
-                <button 
-                    className="w-full py-5 bg-[#2C2A26] text-[#F5F2EB] uppercase tracking-widest text-sm font-medium hover:bg-[#433E38] transition-colors"
-                    onClick={() => alert("Solicitud enviada. Nos comunicaremos pronto.")}
-                >
-                    Enviar Solicitud
-                </button>
-              </div>
-            </div>
+                {/* Section 2: Preferences */}
+                <div>
+                  <h2 className="text-xl font-serif text-[#2C2A26] mb-6">Preferencias</h2>
+                  <div className="space-y-4">
+                    <div className="grid grid-cols-1 gap-4">
+                        <select name="timePreference" value={formData.timePreference} onChange={handleInputChange} className="w-full bg-transparent border-b border-[#D6D1C7] py-3 text-[#2C2A26] outline-none focus:border-[#2C2A26] transition-colors">
+                          <option value="">Preferencia Horaria</option>
+                          <option value="morning">Mañana (9:00 - 12:00)</option>
+                          <option value="afternoon">Tarde (13:00 - 18:00)</option>
+                          <option value="evening">Noche (18:00 - 20:00)</option>
+                        </select>
+                    </div>
+                    <textarea name="consultationReason" value={formData.consultationReason} onChange={handleInputChange} placeholder="Motivo de consulta (breve, opcional)" className="w-full bg-transparent border-b border-[#D6D1C7] py-3 text-[#2C2A26] placeholder-[#A8A29E] outline-none focus:border-[#2C2A26] transition-colors h-24 resize-none"></textarea>
+                  </div>
+                </div>
+
+                <div>
+                  <button 
+                      type="submit"
+                      disabled={formStatus === 'submitting'}
+                      className="w-full py-5 bg-[#2C2A26] text-[#F5F2EB] uppercase tracking-widest text-sm font-medium hover:bg-[#433E38] transition-colors disabled:opacity-50 disabled:cursor-wait"
+                  >
+                      {formStatus === 'submitting' ? 'Enviando...' : 'Enviar Solicitud'}
+                  </button>
+                  {formStatus === 'error' && <p className="text-red-700 text-xs mt-4 text-center">Hubo un error al enviar el formulario. Por favor, intenta de nuevo.</p>}
+                </div>
+              </form>
+            )}
           </div>
 
           {/* Right Column: Summary */}

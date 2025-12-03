@@ -1,21 +1,34 @@
-
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
 */
 
 
-import React, { useState } from 'react';
+import React from 'react';
 import { Product } from '../types';
+
+// TypeScript type definition for the Calendly window object
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
+  }
+}
 
 interface ProductDetailProps {
   product: Product;
   onBack: () => void;
-  onAddToCart: (product: Product) => void;
 }
 
-const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, onAddToCart }) => {
+const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack }) => {
   
+  const handleScheduleClick = () => {
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({ url: 'https://calendly.com/lic-valdevenitez/tuespacio?hide_event_type_details=1&hide_gdpr_banner=1' });
+    }
+  };
+
   return (
     <div className="pt-24 min-h-screen bg-[#F5F2EB] animate-fade-in-up">
       <div className="max-w-[1800px] mx-auto px-6 md:px-12 pb-24">
@@ -59,10 +72,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ product, onBack, onAddToC
 
              <div className="flex flex-col gap-4">
                <button 
-                 onClick={() => onAddToCart(product)}
+                 onClick={handleScheduleClick}
                  className="w-full py-5 bg-[#2C2A26] text-[#F5F2EB] uppercase tracking-widest text-sm font-medium hover:bg-[#433E38] transition-colors"
                >
-                 Solicitar Turno
+                 Agendar Online
                </button>
                <ul className="mt-8 space-y-2 text-sm text-[#5D5A53]">
                  {product.features.map((feature, idx) => (

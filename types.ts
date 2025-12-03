@@ -1,4 +1,3 @@
-
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -44,5 +43,4 @@ export enum LoadingState {
 export type ViewState = 
   | { type: 'home' }
   | { type: 'product', product: Product }
-  | { type: 'journal', article: JournalArticle }
-  | { type: 'checkout' };
+  | { type: 'journal', article: JournalArticle };

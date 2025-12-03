@@ -17,8 +17,9 @@ export const PRODUCTS: Product[] = [
     longDescription: 'La entrevista inicial es el primer encuentro donde evaluamos el motivo de consulta, la modalidad de trabajo más adecuada y establecemos el encuadre terapéutico. Es el momento para despejar dudas y conocer al profesional.',
     price: PROFILE.prices.initialInterview,
     category: 'Entrevista',
-    imageUrl: 'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&q=80&w=1000',
+    imageUrl: 'https://images.unsplash.com/photo-1554325139-bbd006cd3e5a?auto=format&fit=crop&q=80&w=1000',
     gallery: [
+      'https://images.unsplash.com/photo-1554325139-bbd006cd3e5a?auto=format&fit=crop&q=80&w=1000',
       'https://images.unsplash.com/photo-1573497620053-ea5300f94f21?auto=format&fit=crop&q=80&w=1000',
       'https://images.unsplash.com/photo-1606166187734-a433e10e5979?auto=format&fit=crop&q=80&w=1000'
     ],
@@ -33,9 +34,9 @@ export const PRODUCTS: Product[] = [
     price: PROFILE.prices.individual,
     category: 'Adultos',
     // Nueva imagen: Espacio de terapia cálido (Sillones, luz natural) - Más estable que retratos
-    imageUrl: 'https://images.unsplash.com/photo-1666362755385-1856fca1a330?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&q=80&w=1000',
+    imageUrl: 'https://images.unsplash.com/photo-1581333100576-b73befd79a9b?auto=format&fit=crop&q=80&w=1000',
     gallery: [
-      'https://images.unsplash.com/photo-1666362755385-1856fca1a330?q=80&w=1528&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D?auto=format&fit=crop&q=80&w=1000',
+      'https://images.unsplash.com/photo-1581333100576-b73befd79a9b?auto=format&fit=crop&q=80&w=1000',
       'https://images.unsplash.com/photo-1560963689-02e820147bc3?auto=format&fit=crop&q=80&w=1000',
       'https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?auto=format&fit=crop&q=80&w=1000'
     ],
@@ -49,8 +50,9 @@ export const PRODUCTS: Product[] = [
     longDescription: 'Las sesiones de pareja ofrecen un marco para escuchar lo que no se dice en la convivencia diaria. Trabajamos sobre los malentendidos, las crisis vitales y la posibilidad de construir nuevos acuerdos vinculares, o bien, acompañar procesos de separación saludables.',
     price: PROFILE.prices.couple,
     category: 'Parejas',
-    imageUrl: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=1000',
+    imageUrl: 'https://images.unsplash.com/photo-1675223542616-48d425978e38?auto=format&fit=crop&q=80&w=1000',
     gallery: [
+        'https://images.unsplash.com/photo-1675223542616-48d425978e38?auto=format&fit=crop&q=80&w=1000',
         'https://images.unsplash.com/photo-1544027993-37dbfe43562a?auto=format&fit=crop&q=80&w=1000',
         'https://images.unsplash.com/photo-1629259856528-76a38676c483?auto=format&fit=crop&q=80&w=1000'
     ],
@@ -58,19 +60,35 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 's4',
-    name: 'Mindfulness y Regulación Emocional',
+    name: 'Mindfulness y Regulación Emocional (Individual)',
     tagline: 'Atención plena en el presente.',
     description: 'Sesiones enfocadas en la reducción del estrés y la ansiedad mediante técnicas de conciencia plena.',
     longDescription: `Como ${PROFILE.mindfulness.title} (${PROFILE.mindfulness.institution}), integro estas herramientas en la clínica para ayudar a pacientes con altos niveles de estrés o ansiedad. Aprendemos a habitar el presente sin juzgar, reduciendo la rumiación mental.`,
     price: PROFILE.prices.mindfulness,
     category: 'Talleres',
-    imageUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1000',
+    imageUrl: 'https://images.unsplash.com/photo-1444312645910-ffa973656eba?auto=format&fit=crop&q=80&w=1000',
     gallery: [
+        'https://images.unsplash.com/photo-1444312645910-ffa973656eba?auto=format&fit=crop&q=80&w=1000',
         'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=1000',
         'https://images.unsplash.com/photo-1545205597-3d9d02c29597?auto=format&fit=crop&q=80&w=1000'
     ],
     features: ['Técnicas de respiración', 'Manejo de ansiedad', 'Presencial']
-  }
+  }//,
+//  {
+//    id: 's5',
+//    name: 'Mindfulness y Regulación Emocional (Grupal)',
+//    tagline: 'Conexión y aprendizaje compartido.',
+//    description: 'Talleres grupales reducidos para el aprendizaje de técnicas de meditación y gestión emocional en un entorno de contención.',
+//    longDescription: `Espacio de taller grupal diseñado para aprender y practicar técnicas de Mindfulness junto a otros. El trabajo en grupo potencia el bienestar, reduce la sensación de soledad y favorece el intercambio de experiencias enriquecedoras en un marco cuidado y profesional.`,
+//    price: PROFILE.prices.mindfulnessGroup,
+//    category: 'Talleres',
+//    imageUrl: 'https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1000',
+//    gallery: [
+//        'https://images.unsplash.com/photo-1543269865-cbf427effbad?auto=format&fit=crop&q=80&w=1000',
+//        'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=1000'
+//    ],
+//    features: ['Grupos reducidos', 'Práctica compartida', 'Frecuencia a coordinar']
+//  }
 ];
 
 export const JOURNAL_ARTICLES: JournalArticle[] = [

@@ -1,4 +1,3 @@
-
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -8,12 +7,20 @@
 import React from 'react';
 import { PROFILE } from '../config';
 
+// TypeScript type definition for the Calendly window object
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
+  }
+}
+
 const Hero: React.FC = () => {
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
+  const handleScrollClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
     if (element) {
-      // Manual scroll calculation to account for fixed header
       const headerOffset = 85;
       const elementPosition = element.getBoundingClientRect().top;
       const offsetPosition = elementPosition + window.scrollY - headerOffset;
@@ -28,6 +35,13 @@ const Hero: React.FC = () => {
       } catch (err) {
         // Ignore SecurityError in restricted environments
       }
+    }
+  };
+
+  const handleScheduleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    if (window.Calendly) {
+      window.Calendly.initPopupWidget({ url: 'https://calendly.com/lic-valdevenitez/tuespacio?hide_event_type_details=1&hide_gdpr_banner=1' });
     }
   };
 
@@ -63,15 +77,15 @@ const Hero: React.FC = () => {
           
           <div className="flex flex-col sm:flex-row gap-4">
             <a 
-              href="#products" 
-              onClick={(e) => handleNavClick(e, 'products')}
+              href="#" 
+              onClick={handleScheduleClick}
               className="px-8 py-4 bg-[#2C2A26] text-[#F5F2EB] text-sm font-medium uppercase tracking-widest hover:bg-[#433E38] transition-all duration-300 text-center shadow-lg hover:shadow-xl hover:-translate-y-1"
             >
               {PROFILE.hero.buttonPrimary}
             </a>
             <a 
               href="#about" 
-              onClick={(e) => handleNavClick(e, 'about')}
+              onClick={(e) => handleScrollClick(e, 'about')}
               className="px-8 py-4 bg-transparent border border-[#2C2A26] text-[#2C2A26] text-sm font-medium uppercase tracking-widest hover:bg-[#2C2A26] hover:text-[#F5F2EB] transition-all duration-300 text-center"
             >
               {PROFILE.hero.buttonSecondary}

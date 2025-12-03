@@ -14,14 +14,10 @@ import Assistant from './components/Assistant';
 import Footer from './components/Footer';
 import ProductDetail from './components/ProductDetail';
 import JournalDetail from './components/JournalDetail';
-import CartDrawer from './components/CartDrawer';
-import Checkout from './components/Checkout';
 import { Product, JournalArticle, ViewState } from './types';
 
 function App() {
   const [view, setView] = useState<ViewState>({ type: 'home' });
-  const [cartItems, setCartItems] = useState<Product[]>([]);
-  const [isCartOpen, setIsCartOpen] = useState(false);
 
   // Handle navigation (clicks on Navbar or Footer links)
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => {
@@ -63,26 +59,9 @@ function App() {
     }
   };
 
-  const addToCart = (product: Product) => {
-    setCartItems([...cartItems, product]);
-    setIsCartOpen(true);
-  };
-
-  const removeFromCart = (index: number) => {
-    const newItems = [...cartItems];
-    newItems.splice(index, 1);
-    setCartItems(newItems);
-  };
-
   return (
     <div className="min-h-screen bg-[#F5F2EB] font-sans text-[#2C2A26] selection:bg-[#D6D1C7] selection:text-[#2C2A26]">
-      {view.type !== 'checkout' && (
-        <Navbar 
-            onNavClick={handleNavClick} 
-            cartCount={cartItems.length}
-            onOpenCart={() => setIsCartOpen(true)}
-        />
-      )}
+      <Navbar onNavClick={handleNavClick} />
       
       <main>
         {view.type === 'home' && (
@@ -107,7 +86,6 @@ function App() {
               setView({ type: 'home' });
               setTimeout(() => scrollToSection('products'), 50);
             }}
-            onAddToCart={addToCart}
           />
         )}
 
@@ -117,30 +95,12 @@ function App() {
             onBack={() => setView({ type: 'home' })}
           />
         )}
-
-        {view.type === 'checkout' && (
-            <Checkout 
-                items={cartItems}
-                onBack={() => setView({ type: 'home' })}
-            />
-        )}
       </main>
 
-      {view.type !== 'checkout' && <Footer onLinkClick={handleNavClick} />}
+      <Footer onLinkClick={handleNavClick} />
       
       <Assistant />
       
-      <CartDrawer 
-        isOpen={isCartOpen}
-        onClose={() => setIsCartOpen(false)}
-        items={cartItems}
-        onRemoveItem={removeFromCart}
-        onCheckout={() => {
-            setIsCartOpen(false);
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            setView({ type: 'checkout' });
-        }}
-      />
     </div>
   );
 }

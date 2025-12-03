@@ -45,10 +45,11 @@ export const PROFILE = {
   // --- LISTA DE PRECIOS (EN ARS) ---
   // Los valores en 0 se mostrarán como "Consultar" o "A coordinar"
   prices: {
-    initialInterview: 25000,
+    initialInterview: 35000,
     individual: 0,
     couple: 0,
-    mindfulness: 0 
+    mindfulness: 0,
+    mindfulnessGroup: 0
   },
 
   // --- TEXTOS DE LA WEB ---

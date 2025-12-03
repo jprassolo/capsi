@@ -1,4 +1,3 @@
-
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
@@ -8,13 +7,20 @@
 import React, { useState, useEffect } from 'react';
 import { PROFILE } from '../config';
 
-interface NavbarProps {
-  onNavClick: (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => void;
-  cartCount: number;
-  onOpenCart: () => void;
+// TypeScript type definition for the Calendly window object
+declare global {
+  interface Window {
+    Calendly?: {
+      initPopupWidget: (options: { url: string }) => void;
+    };
+  }
 }
 
-const Navbar: React.FC<NavbarProps> = ({ onNavClick, cartCount, onOpenCart }) => {
+interface NavbarProps {
+  onNavClick: (e: React.MouseEvent<HTMLAnchorElement>, targetId: string) => void;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ onNavClick }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -31,10 +37,12 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, cartCount, onOpenCart }) =>
     onNavClick(e, targetId);
   };
 
-  const handleCartClick = (e: React.MouseEvent) => {
+  const handleScheduleClick = (e: React.MouseEvent) => {
       e.preventDefault();
       setMobileMenuOpen(false);
-      onOpenCart();
+      if (window.Calendly) {
+        window.Calendly.initPopupWidget({ url: 'https://calendly.com/lic-valdevenitez/tuespacio?hide_event_type_details=1&hide_gdpr_banner=1' });
+      }
   }
 
   // Determine text color based on state
@@ -71,10 +79,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, cartCount, onOpenCart }) =>
           {/* Right Actions */}
           <div className={`flex items-center gap-6 z-50 relative transition-colors duration-500`}>
             <button 
-              onClick={handleCartClick}
+              onClick={handleScheduleClick}
               className="text-sm font-medium uppercase tracking-widest hover:opacity-60 transition-opacity hidden sm:block bg-[#2C2A26] text-[#F5F2EB] px-6 py-2 rounded-full"
             >
-              Reserva ({cartCount})
+              Agendar Turno
             </button>
             
             {/* Mobile Menu Toggle */}
@@ -105,10 +113,10 @@ const Navbar: React.FC<NavbarProps> = ({ onNavClick, cartCount, onOpenCart }) =>
             <a href="#about" onClick={(e) => handleLinkClick(e, 'about')} className="hover:opacity-60 transition-opacity">Sobre Mí</a>
             <a href="#journal" onClick={(e) => handleLinkClick(e, 'journal')} className="hover:opacity-60 transition-opacity">Artículos</a>
             <button 
-                onClick={handleCartClick} 
+                onClick={handleScheduleClick} 
                 className="hover:opacity-60 transition-opacity text-base uppercase tracking-widest font-sans mt-8 border-b border-[#2C2A26] pb-1"
             >
-                Mis Turnos ({cartCount})
+                Agendar Turno
             </button>
           </div>
       </div>
